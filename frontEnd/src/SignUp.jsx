@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate  } from "react-router-dom";
 import SignUp_Logic from "./SignUpLogic";
+import axios from 'axios'
 
 function SignUp() {
     const navigate = useNavigate();
@@ -22,8 +23,12 @@ function SignUp() {
         setErrors(SignUp_Logic(values));
         if (errors.email === ''&& errors.password === '' && errors.confirm_password === '')
         {
-            alert('Create Account Success !')
-            navigate('/');
+            axios.post('http://localhost:8081/signup', values)
+            .then(res => {
+                alert('Create Account Success !')
+                navigate('/');
+            })
+            .catch(err => console.log(err));
         }
     }
 
