@@ -14,6 +14,23 @@ const db = mysql.createConnection({
 })
 
 app.post('/signup', (req, res) => {
+    // Check existed Email
+    const checkEmailSql = "SELECT * FROM users WHERE `username` = ?";
+    const emailToCheck = req.body.email;
+
+    // Kiểm tra xem email đã tồn tại hay chưa
+    db.query(checkEmailSql, [emailToCheck], (err, data) => {
+        if (err) {
+            return res.json("Error during email check");
+        }
+
+        // Nếu đã có email trong cơ sở dữ liệu, trả về lỗi
+        if (data.length > 0) {
+            return res.json("Email already exists");
+        }})
+
+
+    // Insert User into Database
     const sql = "INSERT INTO users (`username`, `password`) VALUES (?)";
     const values = [
         req.body.email,

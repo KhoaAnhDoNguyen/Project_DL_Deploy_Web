@@ -31,7 +31,8 @@ function Login ()  {
                 else
                 {
                     alert("Wrong Email or Password");
-                    window.location.reload();                }
+                    window.location.reload();                
+                }
             })
             .catch(err => console.log(err));
         }

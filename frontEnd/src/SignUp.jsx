@@ -25,8 +25,16 @@ function SignUp() {
         {
             axios.post('http://localhost:8081/signup', values)
             .then(res => {
-                alert('Create Account Success !')
-                navigate('/');
+                if (res.data === "Email already exists")
+                {
+                    alert('Email already exists! Please try again.');
+                    window.location.reload(); 
+                }
+                else
+                {
+                    alert('Create Account Success !')
+                    navigate('/');
+                }
             })
             .catch(err => console.log(err));
         }
