@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import Logic from "./LoginLogic";
+import axios from 'axios'
 
 function Login ()  {
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         email : '',
         password : ''
@@ -17,6 +20,21 @@ function Login ()  {
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Logic(values));
+        if (errors.email === '' && errors.password === '')
+        {
+            axios.post('http://localhost:8081/login', values)
+            .then(res => {
+                if(res.data === "Success") 
+                {
+                    navigate('/home');
+                }
+                else
+                {
+                    alert("Wrong Email or Password");
+                    window.location.reload();                }
+            })
+            .catch(err => console.log(err));
+        }
     }
 
     return (
