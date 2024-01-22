@@ -8,15 +8,18 @@ function SignUp() {
                 <form action="">
                     <div className='mb-3'>
                         <label htmlFor="email"><strong>Email</strong></label>
-                        <input type="email" placeholder='Enter Email' className='form-control rounded-0'/>
+                        <input type="email" placeholder='Enter Email' 
+                        className='form-control rounded-0'/>
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="password"><strong>Password</strong></label>
-                        <input type="password" placeholder='Enter Password' className='form-control rounded-0'/>
+                        <input type="password" placeholder='Enter Password' 
+                        className='form-control rounded-0'/>
                     </div>
                     <div className='mb-3'>
-                        <label htmlFor="password"><strong>Password Again</strong></label>
-                        <input type="password" placeholder='Enter Password Again' className='form-control rounded-0'/>
+                        <label htmlFor="password"><strong>Confirm Password</strong></label>
+                        <input type="password" placeholder='Enter Password Again' 
+                        className='form-control rounded-0'/>
                     </div>
                     <Link to="/" className='btn btn-success w-100'>Create Account</Link>
                 </form>
