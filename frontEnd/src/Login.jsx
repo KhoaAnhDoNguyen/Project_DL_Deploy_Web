@@ -26,7 +26,7 @@ function Login ()  {
             .then(res => {
                 if(res.data === "Success") 
                 {
-                    navigate('/home');
+                    navigate('/model');
                 }
                 else
                 {
