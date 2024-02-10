@@ -14,7 +14,7 @@ import img1 from './assets/feedback-1.jpg'
 import img2 from './assets/feedback-2.jpg'
 import img3 from './assets/feedback-3.jpg'
 import img4 from './assets/feedback-4.jpg'
-
+import bot  from './assets/bot.jpg'  
 function Model() {
     /*const [results, setResults] = useState([]);
 
@@ -35,7 +35,7 @@ function Model() {
     const [showLogout, setShowLogout] = useState(false);
 
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -44,7 +44,13 @@ function Model() {
       autoplaySpeed: 2000,
     };
 
+    const handleLogOut = () => {
+        // Chuyển hướng sang trang đăng nhập
+        window.location.href = '/';
+      };
+
     return (
+    <div style={{backgroundColor: "#f0f3f4"}}>
       <div className="container">
           <div className="row">
 
@@ -93,12 +99,41 @@ function Model() {
                         <User />
                   </div>
                   {showLogout && (
-                      <Button variant="danger" className="ml-2 mt-n3">
+                      <Button variant="danger" className="ml-2 mt-n3" onClick={handleLogOut}>
                           Log Out
                       </Button>)}
               </div>
-
           </div>
+          
+          <div className='d-flex justify-content-center align-items-center'>
+                <div className="input-group mb-3" style={{ maxWidth: '700px' }}>
+                        <input type="text" className="form-control" placeholder="Write your feedback" 
+                        aria-label="Input your feedback" aria-describedby="basic-addon2" />
+                </div>   
+          </div>
+          <div className="d-flex justify-content-center align-items-center">
+                <button className="btn btn-primary" type="button">Predict</button>
+        </div>          
+
+        <div className="d-flex align-items-center">
+            <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '400px' }} />
+            <motion.p 
+                style={{ 
+                marginLeft: '10px', 
+                marginTop: '22px', 
+                fontWeight: 'bold', 
+                color: 'red' 
+            }}
+                initial={{ opacity: 0, y: -10 }} // Đặt vị trí ban đầu và độ trong suốt
+                animate={{ opacity: 1, y: 0 }} // Đặt hiệu ứng sau khi xuất hiện
+                transition={{ duration: 1 }} // Thiết lập thời gian hiệu ứng    
+            >
+            Hello! How can I help you.
+            </motion.p>
+        </div>
+
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+      </div>
       </div>
     )
   }
