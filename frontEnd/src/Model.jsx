@@ -29,11 +29,16 @@ function Model() {
                 console.error('Error fetching results:', error);
             });
     }, []); // Empty dependency array ensures the effect runs once when the component mounts*/
+
+    /*Handle Choose Language */
     const [selectedLanguage, setSelectedLanguage] = useState("English");
     console.log(selectedLanguage)
 
+    /*Handle Choose Logout */
     const [showLogout, setShowLogout] = useState(false);
 
+    
+    /*Animation for Model Pic */
     const settings = {
       dots: false,
       infinite: true,
@@ -44,10 +49,31 @@ function Model() {
       autoplaySpeed: 2000,
     };
 
+    /*Handle Choose Logout and turn to default page */
     const handleLogOut = () => {
         // Chuyển hướng sang trang đăng nhập
         window.location.href = '/';
       };
+
+    /*Handle display bot sentence */
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const sentence = "Hello! How can I help you.";
+    const wordsArray = sentence.split(" ");
+
+    useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(prevIndex => {
+        if (prevIndex < wordsArray.length - 1) {
+          return prevIndex + 1;
+        } else {
+          clearInterval(interval);
+          return prevIndex;
+        }
+      });
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [wordsArray.length]);
 
     return (
     <div style={{backgroundColor: "#f0f3f4"}}>
@@ -117,19 +143,16 @@ function Model() {
 
         <div className="d-flex align-items-center">
             <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '400px' }} />
-            <motion.p 
+            <p 
                 style={{ 
                 marginLeft: '10px', 
                 marginTop: '22px', 
                 fontWeight: 'bold', 
                 color: 'red' 
-            }}
-                initial={{ opacity: 0, y: -10 }} // Đặt vị trí ban đầu và độ trong suốt
-                animate={{ opacity: 1, y: 0 }} // Đặt hiệu ứng sau khi xuất hiện
-                transition={{ duration: 1 }} // Thiết lập thời gian hiệu ứng    
+            }}   
             >
-            Hello! How can I help you.
-            </motion.p>
+            {wordsArray.slice(0, currentIndex + 1).join(" ")}
+            </p>
         </div>
 
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
