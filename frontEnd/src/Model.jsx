@@ -75,6 +75,40 @@ function Model() {
     return () => clearInterval(interval);
   }, [wordsArray.length]);
 
+    /*Handle user feedback input */
+    const [feedback, setFeedback] = useState('');
+
+    const handleInput = (event) => {
+      event.preventDefault();
+      const inputValue = event.target.value;
+      setFeedback(inputValue);
+  };
+
+    /*Handle predict */
+    const [predictionResult, setPredictionResult] = useState('');
+    const handlePredict = () => {
+      console.log(feedback.length); 
+      if (feedback.length > 0)
+      {
+        fetch('http://localhost:5000/results', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ sentence: feedback })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.results); // Hiển thị kết quả từ Flask backend
+            setPredictionResult(data.results);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+      }
+  };
+
+
     return (
     <div style={{backgroundColor: "#f0f3f4"}}>
       <div className="container">
@@ -133,12 +167,12 @@ function Model() {
           
           <div className='d-flex justify-content-center align-items-center'>
                 <div className="input-group mb-3" style={{ maxWidth: '700px' }}>
-                        <input type="text" className="form-control" placeholder="Write your feedback" 
+                        <input type="text" className="form-control" placeholder="Write your feedback"  onChange={handleInput}
                         aria-label="Input your feedback" aria-describedby="basic-addon2" />
                 </div>   
           </div>
           <div className="d-flex justify-content-center align-items-center">
-                <button className="btn btn-primary" type="button">Predict</button>
+                <button className="btn btn-primary" type="button" onClick={handlePredict}>Predict</button>
         </div>          
 
         <div className="d-flex align-items-center">
