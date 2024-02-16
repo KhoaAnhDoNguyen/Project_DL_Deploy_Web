@@ -16,23 +16,9 @@ import img3 from './assets/feedback-3.jpg'
 import img4 from './assets/feedback-4.jpg'
 import bot  from './assets/bot.jpg'  
 function Model() {
-    /*const [results, setResults] = useState([]);
-
-    useEffect(() => {
-        // Fetch data from Flask API when the component mounts
-        axios.get('http://localhost:5000/results')
-            .then(response => {
-                // Update the state with the members data
-                setResults(response.data.results);
-            })
-            .catch(error => {
-                console.error('Error fetching results:', error);
-            });
-    }, []); // Empty dependency array ensures the effect runs once when the component mounts*/
 
     /*Handle Choose Language */
     const [selectedLanguage, setSelectedLanguage] = useState("English");
-    console.log(selectedLanguage)
 
     /*Handle Choose Logout */
     const [showLogout, setShowLogout] = useState(false);
@@ -57,8 +43,200 @@ function Model() {
 
     /*Handle display bot sentence */
     const [currentIndex, setCurrentIndex] = useState(0);
-    const sentence = "Hello! How can I help you.";
-    const wordsArray = sentence.split(" ");
+    const [sentence, setSentence] = useState("Hello! How can I help you.");
+    const [wordsArray, setWordsArray] = useState([]);
+    var chat = "";
+    if (sentence === 'Positive')
+    {
+        if (selectedLanguage === 'English')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
+              setSentence(chat)
+          }
+        }
+        else if (selectedLanguage === 'Tiếng Việt')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
+              setSentence(chat)
+          }
+        }
+        else
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
+            setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
+            setSentence(chat)
+          }
+          else
+          {
+            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
+            setSentence(chat)
+          }
+        }
+    }
+
+    if (sentence === 'Negative')
+    {
+        if (selectedLanguage === 'English')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
+              setSentence(chat)
+          }
+        }
+        else if (selectedLanguage === 'Tiếng Việt')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
+              setSentence(chat)
+          }
+        }
+        else
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
+            setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
+            setSentence(chat)
+          }
+          else
+          {
+            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
+            setSentence(chat)
+          }
+        }
+    }
+
+    if (sentence === 'Neutral')
+    {
+        if (selectedLanguage === 'English')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
+              setSentence(chat)
+          }
+        }
+        else if (selectedLanguage === 'Tiếng Việt')
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
+              setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
+              setSentence(chat)
+          }
+          else
+          {
+              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
+              setSentence(chat)
+          }
+        }
+        else
+        {
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+          if (randomNumber === 1)
+          {
+            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
+            setSentence(chat)
+          }
+          else if (randomNumber === 2)
+          {
+            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
+            setSentence(chat)
+          }
+          else
+          {
+            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
+            setSentence(chat)
+          }
+        }
+    }
+
+    useEffect(() => {
+      if (selectedLanguage === '日本語') {
+          setWordsArray(sentence.split(/(?=[\s\S])/u));
+      } else if (selectedLanguage === 'English' || selectedLanguage === 'Tiếng Việt') {
+          setWordsArray(sentence.split(" "));
+      }
+  }, [selectedLanguage, sentence]);
+  
 
     useEffect(() => {
     const interval = setInterval(() => {
@@ -85,7 +263,6 @@ function Model() {
   };
 
     /*Handle predict */
-    const [predictionResult, setPredictionResult] = useState('');
     const handlePredict = () => {
       console.log(feedback.length); 
       if (feedback.length > 0)
@@ -99,8 +276,7 @@ function Model() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.results); // Hiển thị kết quả từ Flask backend
-            setPredictionResult(data.results);
+            setSentence(data.results);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -176,7 +352,7 @@ function Model() {
         </div>          
 
         <div className="d-flex align-items-center">
-            <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '400px' }} />
+            <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '270px' }} />
             <p 
                 style={{ 
                 marginLeft: '10px', 
@@ -185,7 +361,9 @@ function Model() {
                 color: 'red' 
             }}   
             >
-            {wordsArray.slice(0, currentIndex + 1).join(" ")}
+            {selectedLanguage === '日本語' ? 
+                wordsArray.slice(0, currentIndex + 1).join("") :
+                wordsArray.slice(0, currentIndex + 1).join(" ")}
             </p>
         </div>
 
