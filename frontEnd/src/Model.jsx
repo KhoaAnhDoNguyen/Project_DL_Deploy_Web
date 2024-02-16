@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Dropdown } from "react-bootstrap";
 import { User } from 'react-feather';
 import { Button } from 'react-bootstrap';
-
+import BotRespond from "./BotRespond";
 
 import img1 from './assets/feedback-1.jpg'
 import img2 from './assets/feedback-2.jpg'
@@ -46,194 +46,14 @@ function Model() {
     const [sentence, setSentence] = useState("Hello! How can I help you.");
     const [wordsArray, setWordsArray] = useState([]);
     var chat = "";
-    if (sentence === 'Positive')
-    {
-        if (selectedLanguage === 'English')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
-              setSentence(chat)
-          }
-        }
-        else if (selectedLanguage === 'Tiếng Việt')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
-              setSentence(chat)
-          }
-        }
-        else
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
-            setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
-            setSentence(chat)
-          }
-          else
-          {
-            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
-            setSentence(chat)
-          }
-        }
-    }
-
-    if (sentence === 'Negative')
-    {
-        if (selectedLanguage === 'English')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
-              setSentence(chat)
-          }
-        }
-        else if (selectedLanguage === 'Tiếng Việt')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
-              setSentence(chat)
-          }
-        }
-        else
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
-            setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
-            setSentence(chat)
-          }
-          else
-          {
-            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
-            setSentence(chat)
-          }
-        }
-    }
-
-    if (sentence === 'Neutral')
-    {
-        if (selectedLanguage === 'English')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "The text does not contain any offensive words and is highly complimentary, so the sentence's label is Positive.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "I realized that the text contains many words praising someone, so in my opinion the label of the text should be Positive.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "In my opinion, the label of the sentence is Positive because the text shows the writer's satisfaction.";
-              setSentence(chat)
-          }
-        }
-        else if (selectedLanguage === 'Tiếng Việt')
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-              chat = "Tôi nhận thấy câu text có chứa nhiều từ khen ngợi 1 ai đó nên theo tôi nhãn của câu text nên là Tích Cực.";
-              setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-              chat = "Đoạn text không có bất kì từ ngữ phản cảm nào và mang tính khen ngợi rất cao nên nhãn của câu là Tích Cực.";
-              setSentence(chat)
-          }
-          else
-          {
-              chat = "Theo tôi, nhãn của câu là Tích Cực vì đoạn text thể hiện sự hài lòng của người viết.";
-              setSentence(chat)
-          }
-        }
-        else
-        {
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-          if (randomNumber === 1)
-          {
-            chat = "テキストには誰かを褒めする言葉が多く含まれていることに気づきました。そのため、テキストのラベルはポジティブだと思います。";
-            setSentence(chat)
-          }
-          else if (randomNumber === 2)
-          {
-            chat = "テキストには不快な言葉が含まれません。それに、非常に褒め言葉である、文のラベルはポジティブです。";
-            setSentence(chat)
-          }
-          else
-          {
-            chat = "私の意見では、文のラベルはポジティブだと思う、文がユーザーの満足感を示しているためです。";
-            setSentence(chat)
-          }
-        }
-    }
+    
+    useEffect(() => {
+      BotRespond(sentence, selectedLanguage, chat, setSentence);
+  }, [sentence, selectedLanguage, chat, setSentence]);
 
     useEffect(() => {
-      if (selectedLanguage === '日本語') {
+      if (selectedLanguage === '日本語' || selectedLanguage === 'English' || selectedLanguage === 'Tiếng Việt') {
           setWordsArray(sentence.split(/(?=[\s\S])/u));
-      } else if (selectedLanguage === 'English' || selectedLanguage === 'Tiếng Việt') {
-          setWordsArray(sentence.split(" "));
       }
   }, [selectedLanguage, sentence]);
   
@@ -248,10 +68,11 @@ function Model() {
           return prevIndex;
         }
       });
-    }, 500);
+    }, 200);
 
     return () => clearInterval(interval);
   }, [wordsArray.length]);
+
 
     /*Handle user feedback input */
     const [feedback, setFeedback] = useState('');
@@ -297,16 +118,15 @@ function Model() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => setSelectedLanguage("English")}
+                <Dropdown.Item onClick={(e) => { e.preventDefault(); setSelectedLanguage("English") }}
                   style={{ backgroundColor: selectedLanguage === "English" ? "blue" : "white", color: selectedLanguage === "English" ? "white" : "black" }}
-                  >
-                  English</Dropdown.Item>
+                  >English</Dropdown.Item>
 
-                  <Dropdown.Item onClick={() => setSelectedLanguage("日本語")}
+                  <Dropdown.Item onClick={(e) => { e.preventDefault(); setSelectedLanguage("日本語")}}
                   style={{ backgroundColor: selectedLanguage === "日本語" ? "blue" : "white", color: selectedLanguage === "日本語" ? "white" : "black" }}
                   >日本語</Dropdown.Item>
 
-                  <Dropdown.Item onClick={() => setSelectedLanguage("Tiếng Việt")}
+                  <Dropdown.Item onClick={(e) => { e.preventDefault(); setSelectedLanguage("Tiếng Việt")}}
                   style={{ backgroundColor: selectedLanguage === "Tiếng Việt" ? "blue" : "white", color: selectedLanguage === "Tiếng Việt" ? "white" : "black" }}
                   >Tiếng Việt</Dropdown.Item>
                 </Dropdown.Menu>
@@ -352,7 +172,7 @@ function Model() {
         </div>          
 
         <div className="d-flex align-items-center">
-            <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '270px' }} />
+            <img src={bot} alt="image4" className="img-fluid mr-3" style={{ marginLeft: '300px' }} />
             <p 
                 style={{ 
                 marginLeft: '10px', 
@@ -361,9 +181,7 @@ function Model() {
                 color: 'red' 
             }}   
             >
-            {selectedLanguage === '日本語' ? 
-                wordsArray.slice(0, currentIndex + 1).join("") :
-                wordsArray.slice(0, currentIndex + 1).join(" ")}
+            {wordsArray.slice(0, currentIndex + 1).join("")}
             </p>
         </div>
 
