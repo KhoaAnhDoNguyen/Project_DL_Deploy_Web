@@ -41,39 +41,6 @@ function Model() {
         window.location.href = '/';
       };
 
-    /*Handle display bot sentence */
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [sentence, setSentence] = useState("Hello! How can I help you.");
-    const [wordsArray, setWordsArray] = useState([]);
-    var chat = "";
-    
-    useEffect(() => {
-      BotRespond(sentence, selectedLanguage, chat, setSentence);
-  }, [sentence, selectedLanguage, chat, setSentence]);
-
-    useEffect(() => {
-      if (selectedLanguage === '日本語' || selectedLanguage === 'English' || selectedLanguage === 'Tiếng Việt') {
-          setWordsArray(sentence.split(/(?=[\s\S])/u));
-      }
-  }, [selectedLanguage, sentence]);
-  
-
-    useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prevIndex => {
-        if (prevIndex < wordsArray.length - 1) {
-          return prevIndex + 1;
-        } else {
-          clearInterval(interval);
-          return prevIndex;
-        }
-      });
-    }, 200);
-
-    return () => clearInterval(interval);
-  }, [wordsArray.length]);
-
-
     /*Handle user feedback input */
     const [feedback, setFeedback] = useState('');
 
@@ -85,7 +52,6 @@ function Model() {
 
     /*Handle predict */
     const handlePredict = () => {
-      console.log(feedback.length); 
       if (feedback.length > 0)
       {
         fetch('http://localhost:5000/results', {
@@ -102,9 +68,36 @@ function Model() {
         .catch(error => {
             console.error('Error:', error);
         });
+        setCurrentIndex(0);
       }
   };
 
+      /*Handle display bot sentence */
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [sentence, setSentence] = useState("Hello! How can I help you.");
+  
+      var chat = "";
+      useEffect(() => {
+        BotRespond(sentence, selectedLanguage, chat, setSentence);
+      }, [sentence, selectedLanguage, chat, setSentence]);
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex(prevIndex => {
+        if (prevIndex < sentence.length - 1) {
+          return prevIndex + 1;
+        } else {
+          clearInterval(timer);
+          return prevIndex;
+        }
+      });
+    }, 200);
+
+    return () => clearInterval(timer);
+  }, [sentence]);
+
+  
 
     return (
     <div style={{backgroundColor: "#f0f3f4"}}>
@@ -181,7 +174,7 @@ function Model() {
                 color: 'red' 
             }}   
             >
-            {wordsArray.slice(0, currentIndex + 1).join("")}
+            {sentence.split(/(?=[\s\S])/u).slice(0, currentIndex+1).join("")}            
             </p>
         </div>
 

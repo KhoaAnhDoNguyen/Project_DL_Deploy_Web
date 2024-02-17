@@ -149,17 +149,17 @@ if (sentence === 'Positive')
           var randomNumber = Math.floor(Math.random() * 3) + 1;
           if (randomNumber === 1)
           {
-              chat = "Tôi nhận thấy câu text không thể hiện sự hài lòng hay thất vọng của người dùng nên nhãn là Neutral.";
+              chat = "Tôi nhận thấy câu text không thể hiện sự hài lòng hay thất vọng của người dùng nên nhãn là Trung Tính.";
               setSentence(chat)
           }
           else if (randomNumber === 2)
           {
-              chat = "Đoạn text không có bất kì từ ngữ phản cảm cũng như từ ngữ khen ngợi nên tôi nghĩ nhãn của câu là Neutral.";
+              chat = "Đoạn text không có bất kì từ ngữ phản cảm cũng như từ ngữ khen ngợi nên tôi nghĩ nhãn của câu là Trung Tính.";
               setSentence(chat)
           }
           else
           {
-              chat = "Theo tôi, nhãn của câu là Neutral vì đoạn text không thể hiện sự hài lòng hay thất vọng của người viết.";
+              chat = "Theo tôi, nhãn của câu là Trung Tính vì đoạn text không thể hiện sự hài lòng hay thất vọng của người viết.";
               setSentence(chat)
           }
         }
